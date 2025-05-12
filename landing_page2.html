@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PetSitterNZ | Home</title>
+
+  <!-- ============  BASIC STYLES & PALETTE  ============ -->
+  <style>
+    :root{
+      --brand-h:330;               /* hue 0–359  */
+      --brand-s:60%;               /* saturation */
+      --brand-l:60%;               /* lightness  */
+
+      --brand:      hsl(var(--brand-h) var(--brand-s) var(--brand-l));               /* main pink  */
+      --brand-dark: hsl(var(--brand-h) var(--brand-s) calc(var(--brand-l) - 25%));   /* darker tint */
+
+      --text:#1b1b1b;--bg:#fff;--radius:.8rem;
+      --font-main:"Inter","Helvetica Neue",Arial,sans-serif;
+    }
+
+    /* ---------- reset & base ---------- */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font:16px/1.5 var(--font-main);color:var(--text);background:var(--bg);
+         display:flex;flex-direction:column;min-height:100vh;}
+    a{text-decoration:none;}
+    a:focus-visible{outline:3px solid var(--brand);outline-offset:2px;}
+
+    /* ---------- header ---------- */
+    header{
+      display:flex;align-items:center;gap:2rem;
+      padding:1rem 2rem;border-bottom:4px solid var(--brand);
+    }
+    .logo{font-size:1.6rem;font-weight:700;color:var(--brand-dark);}
+    header nav{flex:1;display:flex;justify-content:center;}
+
+    /* prettier nav buttons */
+    nav ul{display:flex;gap:1.75rem;list-style:none;}
+    nav a{
+      position:relative;
+      font-weight:600;color:var(--text);
+      padding:.55rem 1.25rem;border-radius:var(--radius);
+      transition:background .25s ease,color .25s ease;
+    }
+    nav a::after{
+      content:"";position:absolute;left:0;bottom:-6px;height:3px;width:0;
+      background:var(--brand);border-radius:3px;transition:width .25s ease-out;
+    }
+    nav a:hover,
+    nav a:focus-visible{background:hsla(var(--brand-h) var(--brand-s) var(--brand-l)/.15);}
+    nav a:hover::after,
+    nav a:focus-visible::after{width:100%;}
+
+    /* ---------- SPEAK BUTTON ---------- */
+    #tts-btn{
+      display:flex;align-items:center;gap:.5rem;
+      background:var(--brand);      /* lighter pink like the screenshot */
+      color:#fff;                   /* icon + text white                */
+      border:none;cursor:pointer;
+      padding:.65rem 1.4rem;border-radius:var(--radius);
+      font:inherit;font-size:.9rem;line-height:1;
+      transition:background .25s;
+    }
+    #tts-btn:hover,
+    #tts-btn:focus-visible{background:var(--brand-dark);}
+    #tts-btn .icon{font-size:1.35rem;line-height:1;color:inherit;}
+
+    /* ---------- hero ---------- */
+    .hero{flex:1;min-height:540px;background:url('assets/banner.jpg') center/cover no-repeat;
+          position:relative;display:flex;align-items:center;justify-content:center;}
+    .overlay{background:rgba(0,0,0,.45);position:absolute;inset:0;}
+    .hero-content{position:relative;text-align:center;max-width:50rem;padding:0 1rem;color:#fff;}
+    h1{font-size:3rem;margin-bottom:.5rem;}
+    .tagline{font-size:1.25rem;margin-bottom:2rem;}
+    .cta{display:inline-block;background:var(--brand);color:#fff;padding:.9rem 2.2rem;
+         border-radius:var(--radius);font-size:1.125rem;transition:background .2s;}
+    .cta:hover{background:var(--brand-dark);}
+
+    /* ---------- services ---------- */
+    .services{padding:4rem 1rem;text-align:center;}
+    .services h2{font-size:2rem;margin-bottom:2rem;color:var(--brand-dark);}
+    .service-grid{display:grid;gap:1.5rem;max-width:1000px;margin:0 auto;
+                  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}
+    .service-card{background:hsla(var(--brand-h) var(--brand-s) calc(var(--brand-l)+45%)/.25);
+                  border:2px solid hsla(var(--brand-h) var(--brand-s) var(--brand-l)/.35);
+                  border-radius:var(--radius);padding:2rem;box-shadow:0 2px 6px rgba(0,0,0,.05);
+                  transition:transform .2s;}
+    .service-card:hover{transform:translateY(-4px);}
+    .service-card .icon{font-size:2rem;display:block;margin-bottom:.8rem;color:var(--brand-dark);}
+
+    /* ---------- footer ---------- */
+    footer{text-align:center;font-size:.875rem;padding:1rem 0;color:#666;}
+  </style>
+</head>
+
+<body>
+  <!-- ================ HEADER ================ -->
+  <header>
+    <a class="logo" href="index.html">PetSitterNZ</a>
+
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="register.html">Become&nbsp;a&nbsp;member</a></li>
+        <li><a href="#">Testimonials</a></li>
+        <li><a href="#">Become&nbsp;a&nbsp;sitter</a></li>
+      </ul>
+    </nav>
+
+    <!-- 📣 Speak button -->
+    <button id="tts-btn" aria-label="Listen to page content">
+      <span class="icon" aria-hidden="true">📣</span>Listen
+    </button>
+  </header>
+
+  <!-- ================ HERO ================ -->
+  <main id="main-content" class="hero" role="region" aria-label="Welcome banner">
+    <div class="overlay" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <h1>Trusted Pet Care — Especially When You’re Away</h1>
+      <p class="tagline">Join our community and relax knowing your furry friends are in loving hands.</p>
+      <a class="cta" href="register.html">Become&nbsp;a&nbsp;member&nbsp;now</a>
+    </div>
+  </main>
+
+  <!-- ================ SERVICES ================ -->
+  <section class="services" aria-labelledby="services-title">
+    <h2 id="services-title">Our Top Services</h2>
+
+    <div class="service-grid">
+      <article class="service-card">
+        <span class="icon" aria-hidden="true">🐕‍🦺</span>
+        <h3>Pet Walking</h3>
+        <p>Daily strolls and play-time to keep tails wagging.</p>
+      </article>
+
+      <article class="service-card">
+        <span class="icon" aria-hidden="true">🏡</span>
+        <h3>Home Boarding</h3>
+        <p>A cosy, sitter-run home so pets feel safe while you travel.</p>
+      </article>
+
+      <article class="service-card">
+        <span class="icon" aria-hidden="true">🛁</span>
+        <h3>Spa &amp; Groom</h3>
+        <p>Wash, trim and a paw-dicure — returning fur-babies fresh!</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ================ FOOTER ================ -->
+  <footer>&copy; 2025 PetSitterNZ. All rights reserved.</footer>
+
+  <!-- ===========  SPEECH SCRIPT  =========== -->
+  <script>
+  (function(){
+    const btn  = document.getElementById('tts-btn');
+    const main = document.getElementById('main-content');
+    let utter;
+
+    btn.addEventListener('click', () => {
+      if (speechSynthesis.speaking){
+        speechSynthesis.cancel();
+        return;
+      }
+      const text = main.innerText.trim();
+      if(!text) return;
+      utter      = new SpeechSynthesisUtterance(text);
+      utter.lang = 'en-NZ';
+      speechSynthesis.speak(utter);
+    });
+  })();
+  </script>
+</body>
+</html>
